@@ -38,11 +38,13 @@ class ProjectController extends Controller
             "content"=>"required|max:255|min:3|string|",
             "url"=>"required|url",
             "type_id"=> [ "required", "numeric", "integer", "exists:types,id"],
+            "technologies" => ["array", "exists:technologies,id"],
         ],[
             "title.required"=>"Il titolo è necessario",
             "content.required"=>"La descrizione è necessaria",
             "url.required"=>"L' URL è  necessario",
             "type_id"=> [ "required", "numeric", "integer", "exists:types,id"],
+            "technologies" => ["array", "exists:technologies,id"],
         ]);
         $types=Type::all();
         $projectData = $request->all();
@@ -80,11 +82,13 @@ class ProjectController extends Controller
             "content"=>"required|max:255|min:3|string|",
             "url"=>"required|url",
             "type_id"=> [ "required", "numeric", "integer", "exists:types,id"],
+            "technologies" => ["array", "exists:technologies,id"],
         ],[
             "title.required"=>"Il titolo è necessario",
             "content.required"=>"La descrizione è necessaria",
             "url.required"=>"L' URL è  necessario",
             "type_id"=> [ "required", "numeric", "integer", "exists:types,id"],
+            "technologies" => ["array", "exists:technologies,id"],
         ]);
       
         $project = Project::findOrFail($id);
