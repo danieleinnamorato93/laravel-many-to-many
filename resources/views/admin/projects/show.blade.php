@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
      
     
-        <div class="card col-2  m-5">
+        <div class="card col-12  m-5">
             
             <div class="card-body">
 
@@ -20,10 +20,11 @@
               <span class="badge text-bg-primary">
                 {{ $technology->name }}
               </span>
-              <span class="badge text-bg-warning">{{ $project->type->name }}</span>
+              
               @empty
               <span>Non sono individuate tecnologie</span>
               @endforelse
+              <span class="badge text-bg-warning">{{ $project->type->name }}</span>
 
               <h5 class="card-title">Descrizione: {{$project->content}}</h5>
               

@@ -64,6 +64,24 @@
                         </div>
                     @enderror
                 </div>
+             <div class="mb-3">
+                <label for="project-technology" class="form-label">Tecnologia</label>
+                <select name="technologies[]" id="project-technologies" class="form-control">
+                    @foreach ($technologies as $technology )
+                    <option value="{{ $technology->id }}">
+                        @if(in_array($technology->id, old('technologies', [])))
+                        selected
+                        @endif
+                    
+                    {{ $technology->name }}
+                    </option>
+                        
+                    @endforeach
+                </select>
+
+
+                
+             </div>
                
            <div class="mb-3 d-flex justify-content-center align-items-center">
             <button type="submit" class="btn btn-primary">Crea il tuo nuovo progetto!</button>
