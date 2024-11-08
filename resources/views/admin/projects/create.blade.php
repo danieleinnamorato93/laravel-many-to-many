@@ -66,18 +66,15 @@
                 </div>
              <div class="mb-3">
                 <label for="project-technology" class="form-label">Tecnologia</label>
-                <select name="technologies[]" id="project-technologies" class="form-control">
+                
                     @foreach ($technologies as $technology )
-                    <option value="{{ $technology->id }}">
-                        @if(in_array($technology->id, old('technologies', [])))
-                        selected
-                        @endif
-                    
-                    {{ $technology->name }}
-                    </option>
-                        
+                    <input type="checkbox" value="{{ $technology->id }}" name="technologies[]" id="checkbox-{{ $technology->id}}">
+                   
+               
+                         
+                   <label for="">{{ $technology->name }}</label> 
                     @endforeach
-                </select>
+              
 
 
                 

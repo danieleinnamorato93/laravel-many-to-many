@@ -44,7 +44,9 @@
                 @enderror
                 </div>
 
-                <div class="mb-3">
+                
+
+                    <div class="mb-3">
                     <label for="post-type_id" class="form-label">Tipo:</label>
                     <select name="type_id" id="post-type_id" class="form-control">
                     
@@ -66,7 +68,21 @@
                         </div>
                     @enderror
                 </div>
-               
+                <div class="mb-3">
+                    <label for="project-technology" class="form-label">Tecnologia</label>
+                    
+                        @foreach ($technologies as $technology )
+                        <input type="checkbox" value="{{ $technology->id }}" name="technologies[]" id="checkbox-{{ $technology->id}}">
+                       
+                   
+                             
+                       <label for="">{{ $technology->name }}</label> 
+                        @endforeach
+                  
+    
+    
+                    
+                 </div>
            <div class="mb-3 d-flex justify-content-center align-items-center">
             <button type="submit" class="btn btn-primary">Edita il progetto!</button>
             <button type="reset" class="btn btn-danger">Pulisci i campi</button>

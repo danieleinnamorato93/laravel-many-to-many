@@ -27,7 +27,7 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
-            $project = Project::findOrFail($id);
+      
         return view("admin.projects.create",compact("types","technologies"));
     }
 
@@ -49,10 +49,12 @@ class ProjectController extends Controller
             "type_id"=> [ "required", "numeric", "integer", "exists:types,id"],
             "technologies" => ["array", "exists:technologies,id"],
         ]);
-        $types=Type::all();
-        $projectData = $request->all();
-        $project = Project::create($projectData);
-        return redirect()->route("admin.projects.index",compact("project","types"));
+     
+      
+      
+        $project = Project::create($formdata);
+        $project->technologies()->sync($formdata['technologies']);
+        return redirect()->route("admin.projects.index",compact("project",));
     }
 
     /**
@@ -71,9 +73,10 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
+        $technologies= Technology::all();
         $types = Type::all();
         $project = Project::findOrFail($id);
-        return view("admin.projects.edit", compact("project","types"));
+        return view("admin.projects.edit", compact("project","types","technologies"));
     }
 
     /**
@@ -97,6 +100,7 @@ class ProjectController extends Controller
       
         $project = Project::findOrFail($id);
         $project->update($projectData);
+        $project->technologies()->sync($projectData['technologies']);
         return redirect()->route("admin.projects.index");
     }
 
