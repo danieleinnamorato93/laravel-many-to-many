@@ -60,25 +60,37 @@
                                 {{ $type->name }}
                             </option>
                         @endforeach
-                    </select>
 
-                    @error("type_id")
+                        @error("type_id")
                         <div class="alert alert-warning">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
+                    </select>
+
+                 
+                </div>
                 <div class="mb-3">
                     <label for="project-technology" class="form-label">Tecnologia</label>
                     
                         @foreach ($technologies as $technology )
-                        <input type="checkbox" value="{{ $technology->id }}" name="technologies[]" id="checkbox-{{ $technology->id}}">
+                        <input type="checkbox" value="{{ $technology->id }}" name="technologies[]" id="checkbox-{{ $technology->id}}"
+                        @if($project->technologies->contains($technology))
+                        checked
+                    @endif
+                >
                        
                    
                              
                        <label for="">{{ $technology->name }}</label> 
                         @endforeach
                   
+                        @error("technologies")
+                        <div class="alert alert-warning">
+                            {{ $message }}
+                        </div>
+                    @enderror
     
     
                     

@@ -46,8 +46,8 @@ class ProjectController extends Controller
             "title.required"=>"Il titolo è necessario",
             "content.required"=>"La descrizione è necessaria",
             "url.required"=>"L' URL è  necessario",
-            "type_id"=> [ "required", "numeric", "integer", "exists:types,id"],
-            "technologies" => ["array", "exists:technologies,id"],
+            "type_id"=> "Il tipo è obbligatorio",
+            "technologies" => "Seleziona almeno una tecnologia",
         ]);
      
       
@@ -94,8 +94,8 @@ class ProjectController extends Controller
             "title.required"=>"Il titolo è necessario",
             "content.required"=>"La descrizione è necessaria",
             "url.required"=>"L' URL è  necessario",
-            "type_id"=> [ "required", "numeric", "integer", "exists:types,id"],
-            "technologies" => ["array", "exists:technologies,id"],
+            "type_id"=> "Il tipo è obbligatorio",
+            "technologies" => "Seleziona almeno una tecnologia",
         ]);
       
         $project = Project::findOrFail($id);
