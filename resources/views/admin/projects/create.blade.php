@@ -8,7 +8,7 @@
       <div class="row justify-content-center">
       
 
-        <form class="col-12  card p-4" method="POST" action="{{route("admin.projects.store")}}">
+        <form class="col-12  card p-4" method="POST" enctype="multipart/form-data" action="{{route("admin.projects.store")}}">
             @csrf
         <h1>Crea un nuovo progetto:</h1>
     
@@ -33,6 +33,17 @@
                     </div>
                 @enderror
                 </div>
+                
+              <div class="mb-3">
+                <label for="project-image" class="form-label">Inserisci l'immagine</label>
+                    <input type="file" name="image" id="project-image" class="form-control">
+                    @error("image")
+                    <div class="alert alert-danger">
+                        {{$message}}
+                    </div>
+                @enderror
+                </div>
+
                 <div class="mb-3">
                     <label for="project-url" class="form-label">Url</label>
                     <input type="text" class="form-control" id="project-url" name="url" value="{{old('url')}}">
@@ -74,15 +85,14 @@
                          
                    <label for="">{{ $technology->name }}</label> 
                     @endforeach
-              
 
 
                 
-             </div>
+             
                
-           <div class="mb-3 d-flex justify-content-center align-items-center">
-            <button type="submit" class="btn btn-primary">Crea il tuo nuovo progetto!</button>
-            <button type="reset" class="btn btn-danger">Pulisci i campi</button>
+           <div class=" d-flex justify-content-center align-items-center">
+            <button type="submit" class="mb-3 btn btn-primary ">Crea il tuo nuovo progetto!</button>
+            <button type="reset" class="mb-3 btn btn-danger">Pulisci i campi</button>
 
            </div>
         </form>
