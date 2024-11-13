@@ -7,7 +7,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -43,6 +43,7 @@ class ProjectController extends Controller
             "url"=>"required|url",
             "type_id"=> [ "required", "numeric", "integer", "exists:types,id"],
             "technologies" => ["array", "exists:technologies,id"],
+            "image"=> ["nullable","image","max:250"],
         ],[
             "title.required"=>"Il titolo è necessario",
             "content.required"=>"La descrizione è necessaria",
@@ -51,7 +52,8 @@ class ProjectController extends Controller
             "technologies" => "Seleziona almeno una tecnologia",
         ]);
      
-      
+        $filePath = Storage::disk("public")->put("img/projects/" , $request->image);
+        $data["image"] = $filePath;
       
         $project = Project::create($formdata);
         $project->technologies()->sync($formdata['technologies']);
@@ -91,6 +93,7 @@ class ProjectController extends Controller
             "url"=>"required|url",
             "type_id"=> [ "required", "numeric", "integer", "exists:types,id"],
             "technologies" => ["array", "exists:technologies,id"],
+            "image"=> ["nullable","image","max:250"],
         ],[
             "title.required"=>"Il titolo è necessario",
             "content.required"=>"La descrizione è necessaria",
