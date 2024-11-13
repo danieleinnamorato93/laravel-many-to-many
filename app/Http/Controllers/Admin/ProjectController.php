@@ -107,7 +107,6 @@ class ProjectController extends Controller
 
         
         $project = Project::findOrFail($id);
-     
         $project->technologies()->sync($projectData['technologies']);
         
         if($request->hasFile("image")){
