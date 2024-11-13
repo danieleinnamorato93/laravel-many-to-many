@@ -34,7 +34,7 @@
         <td>{{$project->title}}</td>
         <td>{{$project->content}}</td>
         <td>{{$project->url}}</td>
-        <td>{{$project->type->name}}</td>
+        <td> <span class="badge text-bg-warning">{{$project->type->name}}</span></td>
         <td>   @forelse ($project->technologies as $technology)
           <span class="badge text-bg-primary">
               #{{ strtolower($technology->name) }}
