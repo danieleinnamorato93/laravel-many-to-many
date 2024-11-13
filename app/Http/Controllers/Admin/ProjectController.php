@@ -51,9 +51,12 @@ class ProjectController extends Controller
             "type_id"=> "Il tipo è obbligatorio",
             "technologies" => "Seleziona almeno una tecnologia",
         ]);
+        
+        if($request->hasFile("image")){
+            $filePath = Storage::disk("public")->put("img/projects/" , $request->image);
+            $formdata["image"] = $filePath;
+        }
      
-        $filePath = Storage::disk("public")->put("img/projects/" , $request->image);
-        $data["image"] = $filePath;
       
         $project = Project::create($formdata);
         $project->technologies()->sync($formdata['technologies']);
@@ -101,10 +104,21 @@ class ProjectController extends Controller
             "type_id"=> "Il tipo è obbligatorio",
             "technologies" => "Seleziona almeno una tecnologia",
         ]);
-      
+
+        
         $project = Project::findOrFail($id);
-        $project->update($projectData);
+     
         $project->technologies()->sync($projectData['technologies']);
+        
+        if($request->hasFile("image")){
+            if($project->image){
+                Storage::delete($project->image);
+            }
+            $filePath = Storage::disk("public")->put("img/projects/" , $request->image);
+            $projectData["image"] = $filePath;
+        }
+            $project->update($projectData);
+
         return redirect()->route("admin.projects.index");
     }
 

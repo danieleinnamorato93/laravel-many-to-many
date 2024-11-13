@@ -27,10 +27,14 @@
               <span class="badge text-bg-warning">{{ $project->type->name }}</span>
 
               <h5 class="card-title">Descrizione: {{$project->content}}</h5>
-              
+              @if($project->image)
+              <img src="{{ asset("/storage/" . $project->image) }}" alt="{{ $project->title }}">
+              @else
+              <p>Non ci sono immagini qui...</p>
+              @endif
+            
         
-              Link: <a href="{{ $project->url }}" target="_blank">{{ $project->url }}</a>
-      
+              <div>Link: <a href="{{ $project->url }}" target="_blank">{{ $project->url }}</a></div>
           
 
             </div>
